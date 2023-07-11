@@ -13,9 +13,6 @@ class Buyurtmachi(models.Model):
     def __str__(self):
         return self.firma_nomi
 
-    class Meta:
-        verbose_name = "Buyurtmachi"
-        verbose_name_plural = "Buyurtmachilar"
 
 
 

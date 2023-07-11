@@ -1,16 +1,11 @@
 from django.db import models
-
-
+from rest_framework.generics import RetrieveUpdateDestroyAPIView
 # Create your models here.
 
 # kategoriya
 
 class Category(models.Model):
     title = models.CharField(max_length=90)
-
-    class Meta:
-        verbose_name = "Category"
-        verbose_name_plural = "Categories"
 
     def __str__(self):
         return self.title
@@ -23,20 +18,15 @@ class Unit(models.TextChoices):
 
 
 # product turi
-
-class Product_Type(models.Model):
+class ProductType(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     title = models.CharField(max_length=150)
     image = models.URLField(null=True, blank=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     birligi = models.CharField(max_length=30, choices=Unit.choices)
     video = models.FileField(upload_to="videos/", null=True, blank=True)
 
     def __str__(self):
         return self.title
-
-    class Meta:
-        verbose_name = "Product_Turi"
-        verbose_name_plural = "Product_Turlari"
 
 
 class Omborxona(models.Model):
@@ -47,7 +37,4 @@ class Omborxona(models.Model):
     def __str__(self):
         return self.title
 
-    class Meta:
-        verbose_name = "Omborxona"
-        verbose_name_plural = "Omborxonalar"
 

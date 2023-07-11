@@ -10,15 +10,11 @@ class Product(models.Model):
     narx_1 = models.CharField(max_length=150)
     narx_2 = models.CharField(max_length=150)
 
-    class Meta:
-        verbose_name = "Product"
-        verbose_name_plural = "Products"
-
     def __str__(self):
         return self.product_type
 
 
-class Purchased_Product(models.Model):
+class PurchasedProduct(models.Model):
     product = models.ManyToManyField(Product, related_name="product")
     customer = models.ForeignKey(Buyurtmachi, on_delete=models.CASCADE, related_name="customer")
     time_taken = models.DateTimeField(auto_now=True)
@@ -26,14 +22,9 @@ class Purchased_Product(models.Model):
     is_sale = models.BooleanField(default=False)
     status = models.BooleanField(default=False)
 
-
-    class Meta:
-        verbose_name = "Purchased Product"
-        verbose_name_plural = "Purchased Products"
-
     def __str__(self):
         return self.product
 
 
-class Product_In_Stock(models.Model):
+class ProductInStock(models.Model):
     product = models.ForeignKey(Product, )
